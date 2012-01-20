@@ -1,0 +1,46 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+body {
+  padding: 50px;
+  background-color: #000;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00b7ff;
+}
+div#channel {
+  background-color: #000;
+  width: 100%;
+  color: #d3d3d3;
+}
+div#content {
+  margin: 0 auto;
+  height: 100%;
+  background-color: #000;
+}
+div#title {
+  background-color: #00f;
+  color: #d3d3d3;
+}
+div#footer {
+  position: absolute;
+  background-color: #000;
+  height: 35px;
+  width: 100%;
+}
+div#activity {
+  width: 100%;
+  height: 15px;
+  background-color: #00f;
+  color: #d3d3d3;
+}
+input#privmsg {
+  border: none;
+  color: #d3d3d3;
+  background-color: #000;
+}
