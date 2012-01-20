@@ -16,19 +16,6 @@
       fh = footer.height();
       ft = ($(window).scrollTop()+$(window).height()-fh)+"px";
       footer.css({top:($(window).height()-footer.height())+"px"});
-/*      if ( ($(document.body).height()+fh) < $(window).height()) {
-
-        footer.css({
-          position: "absolute"
-        }).animate({
-          top: ft
-        });
-      } else {
-        console.log("Eh");
-        footer.css({
-          position: "static"
-        });
-      }*/
     }
 
     positionFooter();

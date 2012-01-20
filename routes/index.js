@@ -4,5 +4,5 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'nIrssi - HTML5 irssi clone' })
+  res.render('index', { title: 'hrssi - HTML5 irssi clone' })
 };
