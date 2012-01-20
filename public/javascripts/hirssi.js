@@ -13,8 +13,6 @@
       , footer = $('#footer');
 
     function positionFooter() {
-      fh = footer.height();
-      ft = ($(window).scrollTop()+$(window).height()-fh)+"px";
       footer.css({top:($(window).height()-footer.height())+"px"});
     }
 
