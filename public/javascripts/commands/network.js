@@ -5,17 +5,18 @@
   var hirssi = exports;
 
   hirssi.commands.network = function(command, cb) {
-    if(commands.args.length < 2) {
-
+    if(command.args.length < 2) {
+      cb(true, null);
+      return false;
     }
-    if(command.args[0].toUpperCase() == 'ADD') {
+    if(command.args[1].toUpperCase() == 'ADD') {
       addNetwork(command, cb);
-    } else if(command.args[0].toUpperCase() == 'LIST') {
+    } else if(command.args[1].toUpperCase() == 'LIST') {
       listNetworks(command, cb);
-    } else if(command.args[0].toUpperCase() == 'REMOVE') {
+    } else if(command.args[1].toUpperCase() == 'REMOVE') {
       removeNetwork(command, cb);
     } else {
-      cb(true,null);
+      if(cb) cb(true,null);
       return false;
     }
   };
@@ -42,11 +43,14 @@
             hirssi.networks.splice(i,1);
           }
         }
+        if(cb) cb(null);
         return true;
       } else {
         hirssi.print(err);
+        if(cb) cb(true);
         return false;
       }
+
     });
   }
 
@@ -55,6 +59,7 @@
     for(var i in hirssi.networks) {
       hirssi.print(hirssi.networks[i].name);
     }
+    if(cb) cb(null);
   }
 
 })('undefined' != typeof hirssi ? hirssi : module.exports, this);
