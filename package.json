@@ -2,9 +2,16 @@
     "name": "application-name"
   , "version": "0.0.1"
   , "private": true
-  , "dependencies": {
-      "express": "2.5.5"
-    , "stylus": ">= 0.0.1"
-    , "jade": ">= 0.0.1"
+	, "devDependencies": {
+	  "mocha": "~0.10"
   }
+	, "dependencies": {
+      "express": "~2.5"
+    , "stylus": "~ 0.22"
+    , "jade": "~ 0.20"
+	  , "socket.io": "~ 0.8"
+  }
+	, "engines": {
+	    "node": ">= 0.6.0"
+	}
 }
