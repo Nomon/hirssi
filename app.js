@@ -14,7 +14,7 @@ var express = require('express')
 
 
 var app = module.exports = express.createServer();
-
+var sessionStore = new redisstore
 // we need to configure the authentiocation routes before express.
 auth.initialize(express, app);
 
@@ -22,7 +22,7 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.cookieParser());
-  app.use(express.session({ secret: config.get("session_secret"),  store: new redisstore }));
+  app.use(express.session({ secret: config.get("session_secret"),  store: sessionStore}));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(stylus.middleware({force:true, src: __dirname + '/public'}));
@@ -48,16 +48,12 @@ app.get('/ses', routes.session);
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 
-var io = socket.listen(app);
 
-io.sockets.on('connection', function (socket) {
+/**
+ * Initialize socket.io "routes". needs app for listen and session store for user pairing.
+ */
 
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
-
+routes.io.init(app, sessionStore);
 
 var connections = {};
 

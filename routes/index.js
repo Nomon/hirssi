@@ -1,9 +1,13 @@
-
 /*
  * GET home page.
  */
+exports.io = require('./socketio');
+
 
 exports.index = function(req, res){
+  if(req.session && !req.session.irc) {
+
+  }
   res.render('index', { title: 'hrssi - HTML5 irssi clone' })
 };
 

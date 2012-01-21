@@ -2,11 +2,10 @@
 html
   include head
   block scripts
-    script(src='/socket.io/socket.io.js')
-    script(src='/javascripts/hirssi.js')
-    script(src='/javascripts/footer.js')
-    script(src='/javascripts/title.js')
+
   body
     include title
     div#content
+      ul#channel
+        li perkele
     include footer

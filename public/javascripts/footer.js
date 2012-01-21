@@ -3,7 +3,8 @@
  */
 (function(exports, global, $) {
   var self = this;
-  var footer = exports;
+  var hirssi = exports;
+  hirssi.footer = {};
 
 
   /* Bind to load because images can affect DOM positioning if they are slow loaders.*/
@@ -16,10 +17,11 @@
     $(window).scroll(positionFooter).resize(positionFooter);
   });
 
-  footer.enterPressed = function(ev) {
+  hirssi.footer.enterPressed = function(ev) {
     var command = $('#privmsg').val();
+    var cmd = makeCommandObject(command)
     $('#privmsg').val("");
-    global.hirssi.send(command);
+    hirssi.router(cmd);
   };
 
   /* Make sure the footer is always positioned correctly */
@@ -30,12 +32,35 @@
     $('#privmsg').bind('keypress', function(e) {
       /* enter */
       if(e.which == 13) {
-        footer.enterPressed(e);
+        hirssi.footer.enterPressed(e);
         e.preventDefault();
       }
     });
   });
 
+  function makeCommandObject(str) {
+    var cmd = null, prefix = "", args = null;
 
 
-})('object' === typeof module ? module.exports : (this.footer = {}), this, jQuery);
+    if(str.charAt(0) == '/') {
+      prefix = '/';
+      args = str.split(" ")
+      cmd = args[0].substr(1);
+    }
+
+    var command = {
+        raw: str
+      , prefix: prefix
+      , window: hirssi.window // Active window
+    };
+    if(cmd != null) {
+      command.cmd = cmd;
+    }
+    if(args != null) {
+      command.args = args;
+    }
+    return command;
+  }
+
+
+})('undefined' != typeof hirssi ? hirssi : module.exports, this, jQuery);
