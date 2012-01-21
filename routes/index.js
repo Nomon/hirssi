@@ -1,6 +1,8 @@
 /*
  * GET home page.
  */
+exports.io = require('./socketio');
+
 
 exports.index = function(req, res){
   if(req.session && !req.session.irc) {
