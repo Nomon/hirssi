@@ -3,7 +3,8 @@
  */
 (function(exports, global, $) {
   var self = this;
-  var footer = exports;
+  var hirssi = exports;
+  hirssi.footer = {};
 
 
   /* Bind to load because images can affect DOM positioning if they are slow loaders.*/
@@ -16,10 +17,13 @@
     $(window).scroll(positionFooter).resize(positionFooter);
   });
 
-  footer.enterPressed = function(ev) {
+  hirssi.footer.enterPressed = function(ev) {
     var command = $('#privmsg').val();
+    var cmd = {
+      raw:command
+    };
     $('#privmsg').val("");
-    global.hirssi.send(command);
+    hirssi.router(cmd);
   };
 
   /* Make sure the footer is always positioned correctly */
@@ -30,7 +34,7 @@
     $('#privmsg').bind('keypress', function(e) {
       /* enter */
       if(e.which == 13) {
-        footer.enterPressed(e);
+        hirssi.footer.enterPressed(e);
         e.preventDefault();
       }
     });
@@ -38,4 +42,4 @@
 
 
 
-})('object' === typeof module ? module.exports : (this.footer = {}), this, jQuery);
+})('undefined' != typeof hirssi ? hirssi : module.exports, this, jQuery);

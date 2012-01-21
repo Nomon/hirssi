@@ -1,19 +1,19 @@
 (function(exports, global, $) {
   var hirssi = exports;
-  hirssi.networks = {};
-  hirssi.channels = {};
+  hirssi.networks = [];
+  hirssi.me = {};
 
   $(document).ready(function() {
     hirssi._socket = io.connect();
-    hirssi._socket.on('news', function (data) {
-      console.log(data);
-      hirssi._socket.emit('my other event', { my: 'data' });
+
+    hirssi._socket.on('irc', function(data) {
+      hirssi.me = new hirssi.User({socket:hirssi.socket, nick:data.nick});
+      for(var i in data.networks) {
+        hirssi.networks.push(new hirssi.Network(data.networks[i]));
+      }
     });
   });
 
-  hirssi.send = function(data) {
-
-  }
 
 
 })('object' === typeof module ? module.exports : (this.hirssi = {}), this, jQuery);
