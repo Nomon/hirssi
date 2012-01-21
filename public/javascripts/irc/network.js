@@ -18,7 +18,6 @@
     for(var i in options.channels) {
       this.channels.push(new hirssi.Channel(options.channels[i]));
     }
-
   }
 
 })('undefined' != typeof hirssi ? hirssi : module.exports, this);

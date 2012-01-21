@@ -6,6 +6,7 @@ var app = null;
 var session = null;
 var User = require('../lib/model/user').User;
 
+
 exports.init = function(application, sessionStore) {
   session = sessionStore;
   app = application;

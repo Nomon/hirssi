@@ -12,6 +12,7 @@
       , users: []
     }
     hirssi.util.merge(this.options, options);
+    this.socket = hirssi.io.connect('/channel/'+this.options.id);
     this.users = [];
     for(var i in options.users) {
       this.users.push(new hirssi.User(options.users[i]));
