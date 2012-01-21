@@ -1,11 +1,12 @@
 var clients = {};
 var socket = require('socket.io');
 var connect = require('connect');
-var io = null;
-var app = null;
-var session = null;
+var io = exports.io = null;
+var app = exports.app = null;
+var session = exports.session = null;
 var User = require('../lib/model/user').User;
 
+var networkCommand = require('./socket.io/network');
 
 exports.init = function(application, sessionStore) {
   session = sessionStore;
@@ -17,6 +18,7 @@ exports.init = function(application, sessionStore) {
       exports.disconnect(socket);
     });
   });
+
   /**
    * Authorize the socket.io connection with session id.
    */
@@ -30,6 +32,13 @@ exports.init = function(application, sessionStore) {
         handshakeData.session = ses;
         callback(err,handshakeData.session);
       });
+    });
+  });
+
+  io.on('cmd', function(socket, command) {
+    command.client = clients[socket.id];
+    exports.cmd(command, function(err, response) {
+      io.emit('cmdresponse',err, response);
     });
   });
 
@@ -50,3 +59,16 @@ exports.connect = function(socket) {
 exports.disconnect = function(socket) {
   delete clients[socket.id];
 }
+
+exports.cmd = function(command, cb) {
+  console.log("Got command");
+  console.dir(command);
+  switch(command.cmd) {
+    case 'network':
+      return networkCommand.run(command, cb);
+    break;
+    default:
+      console.log("Unknown command");
+      cb("Unknown command",null);
+  }
+};
