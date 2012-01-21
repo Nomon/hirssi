@@ -9,15 +9,15 @@
       "express": "~2.5"
     , "stylus": "~ 0.22"
     , "jade": "~ 0.20"
-	  , "socket.io": "~ 0.8"
-	  , "everyauth": "~0.2"
-	  , "cfg" : "~0.0.2"
-	  , "jugglingdb" : "0.0.8"
-	  , "redis" : "~0.7"
-      , "irc" : "0.3.3"
-	  , "connect-redis": "~1.2"
+    , "socket.io": "~ 0.8"
+    , "everyauth": "~0.2"
+    , "cfg" : "~0.0.2"
+    , "jugglingdb" : "0.0.8"
+    , "redis" : "~0.7"
+    , "irc" : "0.3.3"
+    , "connect-redis": "~1.2"
   }
 	, "engines": {
-	    "node": ">= 0.6.0"
+      "node": ">= 0.6.0"
 	}
 }
