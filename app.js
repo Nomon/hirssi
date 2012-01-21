@@ -11,7 +11,7 @@ var express = require('express')
   , config = require('./lib/config').cfg
   , redisstore = require('connect-redis')(express)
   , auth = require('./lib/auth');
-  , User = require('./lib/model/user').User;
+
 
 var app = module.exports = express.createServer();
 
@@ -43,6 +43,7 @@ app.configure('production', function(){
 
 
 app.get('/', routes.index);
+app.get('/ses', routes.session);
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
