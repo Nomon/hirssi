@@ -19,9 +19,7 @@
 
   hirssi.footer.enterPressed = function(ev) {
     var command = $('#privmsg').val();
-    var cmd = {
-      raw:command
-    };
+    var cmd = makeCommandObject(command)
     $('#privmsg').val("");
     hirssi.router(cmd);
   };
@@ -40,6 +38,29 @@
     });
   });
 
+  function makeCommandObject(str) {
+    var cmd = null, prefix = "", args = null;
+
+
+    if(str.charAt(0) == '/') {
+      prefix = '/';
+      args = str.split(" ")
+      cmd = args[0].substr(1);
+    }
+
+    var command = {
+        raw: str
+      , prefix: prefix
+      , window: hirssi.window // Active window
+    };
+    if(cmd != null) {
+      command.cmd = cmd;
+    }
+    if(args != null) {
+      command.args = args;
+    }
+    return command;
+  }
 
 
 })('undefined' != typeof hirssi ? hirssi : module.exports, this, jQuery);

@@ -12,16 +12,16 @@
 
     if(command.raw.charAt(0) == '/') {
       /* do we have a local handler for this command */
+
       if(hirssi.commands[command.cmd]) {
+        console.log("Matching internal command!");
         return hirssi.commands[command.cmd](command, cb);
       } else {
-        // So it was something typed in a channel starting with /
-        if(command.window.type == "channel") {
-          command.channel.socket.emit('cmd', command);
-        } else {
-          command.network.socket.emit('cmd', command);
-        }
+        // Send to server.
+        console.log("server command");
       }
+    } else {
+      console.log("channel message");
     }
   }
 

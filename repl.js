@@ -15,7 +15,7 @@ var c = function() {
   var i = 0;
   for(var i in args) {
     con.context["_"+i] = args[i];
-    console.log("\n"+util.format("%d: %s\n",i,util.inspect(args[i],2)));
+    console.log(util.format("%d: %s",i,util.inspect(args[i],2)));
   }
 }
 
