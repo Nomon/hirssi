@@ -10,7 +10,8 @@ var express = require('express')
   , everyauth = require('everyauth')
   , config = require('./lib/config').cfg
   , redisstore = require('connect-redis')(express)
-  , auth = require('./lib/auth');
+  , auth = require('./lib/auth')
+  , irc = require('./lib/controller/irccontroller');
 
 
 var app = module.exports = express.createServer();
@@ -57,6 +58,7 @@ routes.io.init(app, sessionStore);
 
 var connections = {};
 
+irc.start();
 
 
 /*

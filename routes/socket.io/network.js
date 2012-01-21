@@ -16,23 +16,15 @@ exports.run = function(command, cb) {
 
 function addNetwork(command, cb) {
   var user = command.user;
-  var options = {
-
+  var options = {};
+  if(command.args.realname !== undefined) {
+    options.realname = command.args.realname;
   }
-  for(var i in command.args) {
-    if(command.args[i].toLowerCase() == '-nick') {
-      if(command.args.length > i+1) {
-        options.nick = command.args[i+1]
-      }
-    } else if(command.args[i].toLowerCase() == '-user') {
-      if(command.args.length > i+1) {
-        options.user = command.args[i+1]
-      }
-    } else if(command.args[i].toLowerCase() == '-realname') {
-      if(command.args.length > i+1) {
-        options.user = command.args[i+1]
-      }
-    }
+  if(command.args.user !== undefined) {
+    options.user = command.args.user;
   }
-  user.addNetwork()
+  if(command.args.user !== undefined) {
+    options.nick = command.args.nick;
+  }
+  user.addNetwork(options);
 }
