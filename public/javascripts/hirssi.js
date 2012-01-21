@@ -4,7 +4,7 @@
   hirssi.channels = {};
 
   $(document).ready(function() {
-    hirssi._socket = io.connect('http://localhost');
+    hirssi._socket = io.connect();
     hirssi._socket.on('news', function (data) {
       console.log(data);
       hirssi._socket.emit('my other event', { my: 'data' });
