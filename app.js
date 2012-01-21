@@ -22,7 +22,7 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.cookieParser());
-  app.use(express.session({ secret: "hirssi kissa koiira jeee jee",  store: new redisstore }));
+  app.use(express.session({ secret: config.get("session_secret"),  store: new redisstore }));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(stylus.middleware({force:true, src: __dirname + '/public'}));
@@ -67,7 +67,7 @@ var connections = {};
  * EveryAuth authentication routes.
  */
 
-
-console.dir(everyauth.facebook.routes); // undefined
-console.dir(everyauth.github.entryPath()); // '/auth/github'
-console.dir(everyauth.github.configurable());
+// Uncomment to see auth capabilities of everyauth
+//console.dir(everyauth.facebook.routes); // undefined
+//console.dir(everyauth.github.entryPath()); // '/auth/github'
+//console.dir(everyauth.github.configurable());
