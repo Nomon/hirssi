@@ -45,14 +45,35 @@ exports.init = function(application, sessionStore) {
 }
 /* connect "route" for socket.io initial connections */
 exports.connect = function(socket) {
-
-  User.find(socket.handshake.session.userId,function(err,user) {
+  console.dir(socket.handshake);
+  if(!socket.handshake || !socket.handshake.session || !socket.handshake.session.auth) {
+    console.log("Not authenticated.");
+    console.dir(socket.handshake.session.auth);
+    return;
+  }
+  User.find(socket.handshake.session.auth.userId,function(err,user) {
     var socketClient = {
       user: user,
       session:socket.handshake,
       socketId:socket.id
     };
     clients[socket.id] = socketClient;
+    console.log("User connected, lets get a connection");
+    /* need to require runtime because controller nmight be null earlier. */
+    var irc = require('../lib/controller/irccontroller').controller;
+    irc.getClient(user, function(err, client) {
+      clients[socket.id].irc = client;
+      client.socketId = socket.id;
+      setupIrcListeners(client);
+    });
+  });
+}
+
+var setupIrcListeners = function(client) {
+  client.on('message', function(socket, data) {
+    var socketClient = clients[client.socketId];
+    console.log("privmsg ");
+    console.dir(arguments);
   });
 }
 
@@ -72,3 +93,5 @@ exports.cmd = function(command, cb) {
       cb("Unknown command",null);
   }
 };
+
+
