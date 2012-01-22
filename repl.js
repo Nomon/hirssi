@@ -5,7 +5,7 @@ var Model = require('./lib/model');
 var util = require('util');
 var User = Model.User.User;
 var Channel = Model.Channel.Channel;
-var Network = Model.Network.Channel;
+var Network = Model.Network.Network;
 var Server = Model.Server.Server;
 
 
@@ -13,7 +13,7 @@ var Server = Model.Server.Server;
 var c = function() {
   var args = Array.prototype.slice.apply(arguments);
   var i = 0;
-  for(var i in args) {
+  for(i in args) {
     con.context["_"+i] = args[i];
     console.log(util.format("%d: %s",i,util.inspect(args[i],2)));
   }
