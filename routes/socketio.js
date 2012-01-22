@@ -62,6 +62,10 @@ exports.connect = function(socket) {
     /* need to require runtime because controller nmight be null earlier. */
     var irc = require('../lib/controller/irccontroller').controller;
     irc.getClient(user, function(err, client) {
+      if (err) {
+        console.log(err);
+        return;
+      }
       clients[socket.id].irc = client;
       client.socketId = socket.id;
       setupIrcListeners(client);
