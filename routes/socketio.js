@@ -5,7 +5,7 @@ var io = exports.io = null;
 var app = exports.app = null;
 var session = exports.session = null;
 var User = require('../lib/model/user').User;
-
+var IrcController = require('../lib/controller/irccontroller');
 var networkCommand = require('./socket.io/network');
 
 exports.init = function(application, sessionStore) {
@@ -65,6 +65,9 @@ exports.connect = function(socket) {
       clients[socket.id].irc = client;
       client.socketId = socket.id;
       setupIrcListeners(client);
+      sendInitialIrcData(socket, user, function() {
+        console.log("Initial data sent to client ");
+      });
     });
   });
 }
@@ -73,8 +76,32 @@ var setupIrcListeners = function(client) {
   client.on('message', function(socket, data) {
     var socketClient = clients[client.socketId];
     console.log("privmsg ");
-    console.dir(arguments);
+
   });
+};
+
+var sendInitialIrcData = function(socket, user, cb) {
+  var self = this;
+  user.networks(function(err, networks) {
+    networks.forEach(function(network) {
+      var networkConfiguration = {
+          userId: user.id
+        , nick: user.name
+        , network: {
+            name: network.name
+          , id:network.id
+          , servers:[]
+        }
+      };
+
+      IrcController.getIrcConfiguration(network, function(err, config) {
+        networkConfiguration.network.servers = config;
+        socket.emit('network', networkConfiguration);
+
+      });
+    });
+  });
+
 }
 
 exports.disconnect = function(socket) {
@@ -94,4 +121,13 @@ exports.cmd = function(command, cb) {
   }
 };
 
+exports.sendInitialData = function(socket, user) {
+  var init = {
+      nick: ""
+    , networks: []
+    ,
+  }
+
+  user.networks({});
+}
 

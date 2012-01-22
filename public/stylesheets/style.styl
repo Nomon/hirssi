@@ -3,6 +3,8 @@ html, body
   margin 0
   padding 0
   overflow hidden
+  background-color black
+  scrollbar-base-color black;
 
 body
   padding: 50px
@@ -37,6 +39,7 @@ div#title
   background-color blue
   color lightgray
   width 100%
+  z-index 10
 
 div#footer
   position absolute
@@ -74,6 +77,11 @@ ul#channel
   list-style-type none
 
 div#content
-  overflow scroll
+  background-color black
   margin-bottom 35px
+  margin-top 20px
 
+input.inputbox
+  height 14px
+  width 90%
+  float right

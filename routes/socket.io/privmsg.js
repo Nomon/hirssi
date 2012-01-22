@@ -1,6 +1,5 @@
 // User sends message
-exports.run = function() {
+exports.run = function(irc, message) {
 
 }
 
-  
