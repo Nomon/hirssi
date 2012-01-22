@@ -13,6 +13,7 @@
   hirssi.addNetwork = function(data) {
     var network = new hirssi.Network(data);
     hirssi.networks.push(network);
+    hirssi.views.network.refresh();
   }
 
   hirssi.commands.network = function(command, cb) {
