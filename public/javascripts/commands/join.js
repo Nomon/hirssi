@@ -3,37 +3,19 @@
  */
 (function(exports, global) {
   var hirssi = exports;
-  $(document).ready(function() {
-    hirssi.socket.on('network', function (data) {
-      hirssi.addNetwork(data);
-      console.dir(data);
-    });
-  });
 
-  hirssi.addNetwork = function(data) {
-    var network = new hirssi.Network(data);
-    hirssi.networks.push(network);
-  }
-
-  hirssi.commands.network = function(command, cb) {
-    if(command.args.length < 2) {
-      cb(true, null);
-      return false;
+  hirssi.commands.join = function(command, cb) {
+    var channel = command.subcommand;
+    if(!channel) {
+      return cb(new Error("Not enough parameters given"));
     }
-    if(command.args[1].toUpperCase() == 'ADD') {
-      addNetwork(command, cb);
-    } else if(command.args[1].toUpperCase() == 'LIST') {
-      listNetworks(command, cb);
-    } else if(command.args[1].toUpperCase() == 'REMOVE') {
-      removeNetwork(command, cb);
-    } else {
-      if(cb) cb(true,null);
-      return false;
-    }
+    joinChannel(command, cb);
   };
 
-  function addNetwork(command, cb) {
-    hirssi.socket.emit('network', command, function(err, network) {
+  function joinChannel(command, cb) {
+    hirssi.socket.emit('join', command, function(err, channel) {
+      var channel = new hirssi.Channel({name:channel});
+
       if(err != null) {
         var nw = new hirssi.Network(network);
         hirssi.networks.push(nw);

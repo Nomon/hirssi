@@ -7,17 +7,12 @@
    * @namespace
    */
   function Network(options) {
-    this.options = {
-        name: "ircnet"
-      , channels: []
-    };
-
-    hirssi.util.merge(this.options, options);
-    this.socket = hirssi.io.connect('/network/'+this.options.id);
-    this.channels = [];
-    for(var i in options.channels) {
-      this.channels.push(new hirssi.Channel(options.channels[i]));
+    this.name = options.network.name || "default_name";
+    this.servers = [];
+    for(var i in options.network.servers) {
+      this.servers.push(new hirssi.Server(options.network.servers[i]));
     }
   }
+
 
 })('undefined' != typeof hirssi ? hirssi : module.exports, this);

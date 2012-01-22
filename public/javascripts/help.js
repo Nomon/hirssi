@@ -25,4 +25,10 @@
     text: ["Irssi commands:" ,
           "network"]
   }
+  hirssi.help.join = {
+    text: ["JOIN [-window] [-invite] [-<server tag>] <channels> [<keys>]",
+           "","Joins a specified channel. Channel names usually begin with #-sign, which may be omitted here.",
+           "","JOIN is aliased to J by default. Example: /j irssi (This joins to the channel #irssi)","",
+           "See also: PART, WINDOW CLOSE"]
+  };
 })('undefined' != typeof hirssi ? hirssi : module.exports, this);
