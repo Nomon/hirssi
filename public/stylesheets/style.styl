@@ -12,6 +12,16 @@ body
   font-family 'Inconsolata', sans-serif
   font-weight 400
 
+.fixed
+  position: fixed !important
+
+div#title
+  top 0px
+  left 0px
+  position absolute
+  z-index 10o
+  background-color blue
+  width 100%
 
 a
   color: #00B7FF
@@ -27,7 +37,6 @@ div#channel
   color text_color
 
 div#content
-  margin 0 auto
   height 100%
   background-color black
 
@@ -72,6 +81,10 @@ input#privmsg
 
 input#githublogin
   float right
+  height 20px
+  padding 0
+  background-color #00008b
+  border 1px solid black
 
 ul#channel
   background-color black
@@ -87,3 +100,6 @@ input.inputbox
   height 14px
   width 90%
   float right
+
+ul#channel
+  padding-top 40px

@@ -14,5 +14,9 @@
     }
   }
 
+  Network.prototype.send = function(command) {
+    hirssi.socket.emit('cmd', command);
+  }
+
 
 })('undefined' != typeof hirssi ? hirssi : module.exports, this);
