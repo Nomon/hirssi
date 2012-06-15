@@ -7,14 +7,17 @@
     });
 </script>
 <div id="fb-root"></div>
-<div class="login-logo">hirssi</div>
+
 <div class="modal login-modal">
     <div class="modal-header">
+        <div class="login-logo"><h1 class="logo">hirssi</h1></div>
+    </div>
+<!--    <div class="modal-header">
         <ul class="nav nav-pills">
             <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
-            <li class=""><a href="#signup" data-toggle="tab">Sign Up</a></li><!--  -->
+            <li class=""><a href="#signup" data-toggle="tab">Sign Up</a></li>&lt;!&ndash;  &ndash;&gt;
         </ul>
-    </div>
+    </div>-->
     <div class="tab-content">
         <div class="tab-pane active" id="login">
             <div class="modal-body">
@@ -22,7 +25,7 @@
                     <div class="span3">
                         <form class="form" action="/login" method="POST">
                             <fieldset>
-                                <p class="help-block">Login with your email</p>
+                                <p class="help-block">Login / Register</p>
                                 <p></p>
                                 <div class="control-group">
                                     <div class="controls">
@@ -36,24 +39,26 @@
                                 </div>
                                 <input type="hidden" name="_csrf" value="k4P8ZD1pQpcLBsOD2wzgqQaU">
                                 <input type="hidden" name="redirect_uri" value="/">
-                                <input type="submit" class="btn btn-large btn-success pull-right" value="Login"></button>
+                                <input type="submit" class="btn btn-success" value="Proceed"></button>
                             </fieldset>
                         </form>
                     </div>
                     <div class="span3">
-                     <p class="help-block">...or login with one of these</p>
+                     <p class="help-block">...or use one of these</p>
 
                      <p></p>
-                     <button class="btn btn-large btn-facebook"><i class="icon-facebook"></i></button>
-                     <button class="btn btn-large btn-facebook"><i class="icon-github"></i></button>
-                     <button class="btn btn-large btn-facebook"><i class="icon-twitter"></i></button>
-                        <button class="btn btn-large btn-facebook"><i class="icon-google-plus"></i></button>
-                   </div>
+                       <button class="btn btn-large btn-facebook"><i class="icon-facebook"></i></button>
+                       <button class="btn btn-large btn-facebook"><i class="icon-github"></i></button>
+                       <button class="btn btn-large btn-facebook"><i class="icon-twitter"></i></button>
+                       <button class="btn btn-large btn-facebook"><i class="icon-google-plus"></i></button>
+
+                       <button class="btn btn-large btn-facebook"><i class="icon-linkedin"></i></button>
+                    </div>
 
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="signup">
+        <!--<div class="tab-pane" id="signup">
             <div class="modal-body">
                 <div class="row">
                     <div class="span4">
@@ -90,7 +95,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
 
     </div>

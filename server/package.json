@@ -9,5 +9,9 @@
     , "passport": "*"
     , "redis": "*"
     , "passport-facebook": "*"
+    , "passport-twitter": "*"
+    , "passport-github": "*"
+    , "passport-linkedin": "*"
+    , "passport-google": "*"
   }
 }

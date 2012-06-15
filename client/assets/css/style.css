@@ -13,3 +13,12 @@ body {
     box-shadow: 0 0 90px rgba(255, 255, 255, 0.4), 0 3px 4px rgba(0, 0, 0, 0.2);
     width: 600px;
 }
+
+.logo {
+    color: gray;
+    font-weight: bold;
+    font-size: 40px;
+    text-shadow: 2px 2px 2px #333;
+    text-rendering: optimizelegibility;
+    font-family: museo-slab, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
