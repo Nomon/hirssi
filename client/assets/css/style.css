@@ -1,0 +1,15 @@
+body {
+    background-color: #373737;
+}
+
+.login-modal {
+    position: relative !important;
+    margin: 30px auto 10px auto;
+    top: auto;
+    left: auto;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    -webkit-box-shadow: 0 0 90px rgba(255, 255, 255, 0.4), 0 3px 4px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 90px rgba(255, 255, 255, 0.4), 0 3px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 90px rgba(255, 255, 255, 0.4), 0 3px 4px rgba(0, 0, 0, 0.2);
+    width: 600px;
+}

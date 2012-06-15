@@ -1,0 +1,104 @@
+<body class="login">
+<script>
+    $(document).ready(function() {
+        $('.btn-facebook').click(function () {
+            document.location.href = '/auth/facebook'
+        });
+    });
+</script>
+<div id="fb-root"></div>
+<div class="login-logo">hirssi</div>
+<div class="modal login-modal">
+    <div class="modal-header">
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+            <li class=""><a href="#signup" data-toggle="tab">Sign Up</a></li><!--  -->
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane active" id="login">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="span3">
+                        <form class="form" action="/login" method="POST">
+                            <fieldset>
+                                <p class="help-block">Login with your email</p>
+                                <p></p>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" name="username" placeholder="Email" class="input">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="password" name="password" placeholder="Password" class="input">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="_csrf" value="k4P8ZD1pQpcLBsOD2wzgqQaU">
+                                <input type="hidden" name="redirect_uri" value="/">
+                                <input type="submit" class="btn btn-large btn-success pull-right" value="Login"></button>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="span3">
+                     <p class="help-block">...or login with one of these</p>
+
+                     <p></p>
+                     <button class="btn btn-large btn-facebook"><i class="icon-facebook"></i></button>
+                     <button class="btn btn-large btn-facebook"><i class="icon-github"></i></button>
+                     <button class="btn btn-large btn-facebook"><i class="icon-twitter"></i></button>
+                        <button class="btn btn-large btn-facebook"><i class="icon-google-plus"></i></button>
+                   </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="signup">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="span4">
+                        <form class="form" action="/account" method="POST">
+                            <fieldset>
+                                <p class="help-block">Sign up</p>
+
+                                <p></p>
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" name="username" placeholder="Email" class="input" id="input01">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="password" placeholder="Password" name="password" class="input" id="input02">
+                                    </div>
+                                    <div class="controls">
+                                        <input type="password" placeholder="Repeat password" name="password2" class="input" id="input03">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="_csrf" value="k4P8ZD1pQpcLBsOD2wzgqQaU">
+                                <input type="hidden" name="redirect_uri" value="/">
+                                <input type="submit" class="btn btn-large btn-success pull-right" value="Sign Up"></button>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="span3">
+                        <p class="help-block">...or signup with Facebook (recommended)</p>
+
+                        <p></p>
+                        <button class="btn btn-large btn-facebook"><strong>Sign up with Facebook</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <a class="lost-pw" href="https://www.applifier.com/admin/request_password">Lost Password?</a>
+    </div>
+</div>
+
+</div>
+
+</body>
