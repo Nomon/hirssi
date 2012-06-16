@@ -15,6 +15,7 @@ function(app, Backbone, Views) {
   Login.Router = Backbone.Router.extend({
     "routes": {
       "login": "login",
+      "_=_": "postLogin",
       "login2": "login2"
     },
     login2: function() {
@@ -25,9 +26,26 @@ function(app, Backbone, Views) {
       login.$el.appendTo("#main");
       login.render();
       console.log("login router login");
+    },
+    postLogin: function() {
+      console.log("postLogin");
+      app.me = new Login.Model();
+      app.me.fetch({
+        success: function() {
+          console.log("navigating");
+          app.router.navigate('');
+        },
+        error: function(e) {
+          console.log(e);
+        }
+      });
     }
   });
-  Login.Model = Backbone.Model.extend({});
+  Login.Model = Backbone.Model.extend({
+    url: function() {
+      return '/me';
+    }
+  });
   Login.Collection = Backbone.Model.extend({});
   Login.Views = Views;
 

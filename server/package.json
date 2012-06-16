@@ -11,7 +11,8 @@
     , "passport-facebook": "*"
     , "passport-twitter": "*"
     , "passport-github": "*"
-    , "passport-linkedin": "*"
-    , "passport-google": "*"
+    , "passport-http-bearer": "*"
+    , "passport-local": "*"
+    , "sechash": "*"
   }
 }

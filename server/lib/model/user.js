@@ -1,13 +1,16 @@
 var redis = require('redis');
 var client = redis.createClient();
+var redoose = require('redoose');
 
-function User(data) {
-  this.data = data || {};
-  this.profile = null;
-};
+var User = redoose.model({
+  username: {type:'String',validate: function(str) {
+    return str.length > 5;
+  }},
+  password: {type:'String'}
+});
 
 module.exports = User;
-
+/*
 User.prototype.load = function(id, callback) {
   var self = this;
   client.hgetall('User:'+id, function(err, res) {
@@ -24,13 +27,13 @@ User.prototype.load = function(id, callback) {
     });
   });
 };
-
+*/
 /**
- * Gets or sets the user profile and saves it to redis.
+ * Gets or sets the user profile and saves it to redis.    return callback(null, self);
  * @param data
  * @param callback
  * @return {*}
- */
+ *//*
 User.prototype.profile = function(data, callback) {
   var self = this;
   // get profile
@@ -51,8 +54,10 @@ User.prototype.profile = function(data, callback) {
     });
   }
 }
+*/
 
 // Static function to create user.
+/*
 User.create = function(data, callback) {
   var self = this;
   var user = new User(data);
@@ -60,6 +65,16 @@ User.create = function(data, callback) {
     user.data.id = id;
     user.save(callback);
   });
+};*/
+
+
+/**
+ * Loads and logs in user with username/password.
+ */
+/*
+User.login = function(username, password) {
+  client.get('h:User:'+username, function(err, user) {
+
+  });
 };
-
-
+*/
